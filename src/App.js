@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useAtom, atom } from 'jotai';
+import styles from './style.module.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Component1 from './components/component1';
+import Component2 from './components/component2';
 
-function App() {
+export const nameAtom = atom('updating..');
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.test}>
+      <BrowserRouter>
+        <h1>My App</h1>
+        <Link to="/">Page-1</Link>&nbsp;
+        <Link to="/page-2">Page-2</Link>
+        <Routes>
+          <Route path="/" element={<Component1 />} />
+          <Route path="/page-2" element={<Component2 />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;
